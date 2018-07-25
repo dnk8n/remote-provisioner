@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+
+  remote-provisioner:
+    build: ./docker/build/terraform
+    image: local-hashicorp/terraform:latest
+    container_name: remote-provisioner
+    environment:
+      TERRAFORM_OPTIONS: ${TERRAFORM_OPTIONS:-}
+      PROJECT_ROOT: ${PROJECT_ROOT:-/tmp/project-root}
+    volumes:
+      - ./:${PROJECT_ROOT:-/tmp/project-root}
+      - ${HOME}/.aws:/home/terraform/.aws:ro
+    entrypoint: ${PROJECT_ROOT:-/tmp/project-root}/docker/entrypoint.sh
