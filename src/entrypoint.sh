@@ -1,11 +1,11 @@
-#!/usr/bin/env ash
-set -x -euf -o pipefail
+#!/usr/bin/env sh
+set -x -euf
 
-: "${PROJECT_ROOT:=/tmp/project-root}"
+: "${PROJECT_ROOT:=$(pwd)}"
+: "${TERRAFORM_DIR:=terraform}"
 : "${TERRAFORM_OPTIONS:=}"
 
-cd ${PROJECT_ROOT}/terraform
-
+cd ${PROJECT_ROOT}/${TERRAFORM_DIR}
 terraform init
 terraform apply -auto-approve=true ${TERRAFORM_OPTIONS} || JOB_STATUS=$?
 terraform destroy -auto-approve=true ${TERRAFORM_OPTIONS}
