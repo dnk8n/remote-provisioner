@@ -13,7 +13,7 @@ One of the benefits of this is that secrets can be managed within your amazon ac
 
 **Usage(from CI tool):**
 
-- The following environment variables must be set:
+- The following environment variables must be set (For the dockerized demo, you can define environment variables in a `.env` file placed in the same directory as the docker-compose file):
   - `AWS_ACCESS_KEY_ID` 
   - `AWS_SECRET_ACCESS_KEY`
 
