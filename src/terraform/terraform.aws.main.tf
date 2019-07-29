@@ -56,12 +56,17 @@ variable "ingress_security_groups_to_port" {
   default = 0
 }
 
-provider "http" {}
+provider "http" {
+  version = "~> 1.1.1"
+}
 
-provider "tls" {}
+provider "tls" {
+  version = "~> 2.0.1"
+}
 
 provider "aws" {
-  region = "${var.region}"
+  version = "~> 2.21.1"
+  region = "eu-west-1"
 }
 
 data "aws_vpc" "provisioner" {
@@ -125,7 +130,7 @@ resource "aws_instance" "provisioner" {
   ami = "${data.aws_ami.provisioner.id}"
   instance_type = "${var.instance_type}"
   iam_instance_profile = "${var.iam_instance_profile}"
-  tags {
+  tags = {
     Name = "temp-provisioner-${uuid()}"
   }
   availability_zone = "${var.zone == "" ? "" : format(var.region, var.zone)}"
@@ -142,6 +147,7 @@ EOF
     source = "${var.file_or_dir_source}"
     destination = "${var.file_or_dir_dest}"
     connection {
+      host = self.public_ip
       user = "${var.ssh_user}"
       private_key = "${tls_private_key.provisioner.private_key_pem}"
       agent = false
@@ -150,6 +156,7 @@ EOF
   provisioner "remote-exec" {
     inline = "${var.remote_command}"
     connection {
+      host = self.public_ip
       user = "${var.ssh_user}"
       private_key = "${tls_private_key.provisioner.private_key_pem}"
       agent = false

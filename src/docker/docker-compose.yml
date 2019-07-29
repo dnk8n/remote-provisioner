@@ -10,6 +10,8 @@ services:
       PROJECT_ROOT: ${PROJECT_ROOT:-/tmp/project-root}
       TERRAFORM_DIR: ${TERRAFORM_DIR:-terraform}
       TERRAFORM_OPTIONS: ${TERRAFORM_OPTIONS:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
     volumes:
       - ../:${PROJECT_ROOT:-/tmp/project-root}
       - ${HOME}/.aws:/home/terraform/.aws:ro
