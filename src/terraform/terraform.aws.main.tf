@@ -66,7 +66,7 @@ provider "tls" {
 
 provider "aws" {
   version = "~> 2.21.1"
-  region = "eu-west-1"
+  region = "${var.region}"
 }
 
 data "aws_vpc" "provisioner" {
