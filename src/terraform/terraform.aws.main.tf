@@ -147,7 +147,9 @@ EOF
     source = "${var.file_or_dir_source}"
     destination = "${var.file_or_dir_dest}"
     connection {
-      host = self.public_ip
+      type = "ssh"
+      timeout = "30s"
+      host = aws_instance.provisioner.public_ip
       user = "${var.ssh_user}"
       private_key = "${tls_private_key.provisioner.private_key_pem}"
       agent = false
@@ -156,11 +158,12 @@ EOF
   provisioner "remote-exec" {
     inline = "${var.remote_command}"
     connection {
-      host = self.public_ip
+      type = "ssh"
+      timeout = "30s"
+      host = aws_instance.provisioner.public_ip
       user = "${var.ssh_user}"
       private_key = "${tls_private_key.provisioner.private_key_pem}"
       agent = false
     }
   }
 }
-
