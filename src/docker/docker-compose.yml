@@ -4,7 +4,7 @@ services:
 
   remote-provisioner:
     build: ./build/terraform
-    image: local-hashicorp/terraform:latest
+    image: local-hashicorp/terraform:0.12.5
     container_name: remote-provisioner
     environment:
       PROJECT_ROOT: ${PROJECT_ROOT:-/tmp/project-root}

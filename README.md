@@ -19,7 +19,7 @@ One of the benefits of this is that secrets can be managed within your amazon ac
 
 - Your CI tool needs the following information:
 ```
-image: hashicorp/terraform:latest
+image: hashicorp/terraform:0.12.5
     working_directory: ${project_root_directory}
     commands:
       - wget https://raw.githubusercontent.com/dnk8n/remote-provisioner/master/src/terraform/terraform.aws.main.tf
