@@ -1,5 +1,7 @@
 # remote-provisioner
 
+**Note: This is more of a curiosity project and should probably not be done in production**
+
 Designed to be used within a hosted CI tool, this set of configs allows temporary provisioning infrastructure to be launched from within your own AWS VPC.
 
 One of the benefits of this is that secrets can be managed within your amazon account and nowhere else. It is also easy to choose the infrastructure specs you desire for your provisioning.
